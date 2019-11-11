@@ -1,32 +1,18 @@
 import React from 'react';
-import Navigation from 'react-native-navigation';
-const { registerScreens } = require('./screens')
+import { createAppContainer } from 'react-navigation';
+import AppNavigator from './screens/Screens';
+import FontLoader from './utils/FontLoader';
 
 export default class BudgetHog extends React.Component {
 
-    constructor(props) {
-        super(props);
-        registerScreens();
-
-        Navigation.events().registerAppLaunchedListener(() => {
-            Navigation.setRoot({
-                root: {
-                    component: {
-                    name: 'LoginScreen'
-                    }
-                }
-            });
-        });
-
-    }
-
     render() {
+        const AppContainer = createAppContainer(AppNavigator);
         return (
-            <Navigation />
+            <FontLoader>
+                <AppContainer />
+            </FontLoader>
         );
     }
 }
 
-module.exports = {
-    BudgetHog
-}
+module.exports = BudgetHog;

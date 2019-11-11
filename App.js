@@ -1,13 +1,9 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
-import AppNavigator from './src/screens/Screens';
-
-const AppContainer = createAppContainer(AppNavigator);
+import BudgetHog from './src/BudgetHog';
 
 export default class App extends React.Component {  
 
   render() {
-
-    return <AppContainer/>;
+    return <BudgetHog/>;
   }
 }

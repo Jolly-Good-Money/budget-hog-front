@@ -2,33 +2,9 @@ import React from 'react';
 import { Label, Form, Item, Input, Container, Icon, Button, Title } from 'native-base';
 import { Row, Col, Grid} from 'react-native-easy-grid';
 import { moderateScale, ScaledSheet } from 'react-native-size-matters';
-import Roboto from '../../node_modules/native-base/Fonts/Roboto_medium.ttf'
-import Roboto_medium from '../../node_modules/native-base/Fonts/Roboto.ttf'
-import { AppLoading } from 'expo';
-import * as Font from 'expo-font';
 
 class LoginScreen extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = { loading: false };
-  }
-
-  async componentDidMount() {
-    await Font.loadAsync({
-      Roboto_medium,
-      Roboto
-    });
-
-    this.setState({ loading: true });
-  }
-
   render() {
-      if (!this.state.loading) {
-        return <AppLoading/>;
-      }
-
       return(
         <Container style={{backgroundColor: 'black'}}>
           <Grid style={styles.content}>
