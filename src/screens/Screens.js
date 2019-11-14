@@ -1,12 +1,19 @@
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import LoginScreen from './LoginScreen';
 import SignUpScreen from './SignUpScreen';
+import HomeScreen from './HomeScreen';
+import SettingsScreen from './SettingsScreen';
+import LandingScreen from './LandingScreen';
 
-const AppNavigator = createStackNavigator(
+const AuthorizedNavigator = createStackNavigator(
     {
-      Home: LoginScreen,
-      SignUp: SignUpScreen,
+      Home: {
+        screen: HomeScreen
+      },
+      Settings: {
+        screen: SettingsScreen
+      },
     },
     {
       initialRouteName : 'Home',
@@ -14,4 +21,32 @@ const AppNavigator = createStackNavigator(
     },
   );
 
-export default createAppContainer(AppNavigator);
+const UnauthorizedNavigator = createStackNavigator(
+  {
+    SignUp: {
+      screen: SignUpScreen
+    },
+    SignIn: {
+      screen: LoginScreen
+    },
+    Landing: {
+      screen: LandingScreen
+    }
+  },
+  {
+    initialRouteName: 'Landing',
+    headerMode: 'none',
+  }
+)
+
+const AppNavigator = createSwitchNavigator(
+  {
+    Auth: AuthorizedNavigator,
+    NoAuth: UnauthorizedNavigator,
+  },
+  {
+    initialRouteName: 'NoAuth',
+  }
+)
+
+module.exports = createAppContainer(AppNavigator);

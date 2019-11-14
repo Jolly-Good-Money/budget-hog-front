@@ -1,9 +1,24 @@
 import React from 'react';
-import { Label, Form, Item, Input, Container, Icon, Button, Title } from 'native-base';
+import { Label, Form, Item, Input, Container, Icon, Button, Title, Text } from 'native-base';
 import { Row, Col, Grid} from 'react-native-easy-grid';
 import { moderateScale, ScaledSheet } from 'react-native-size-matters';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import COLORS from '../utils/Colors';
 
 class LoginScreen extends React.Component {
+
+  _signIn = async () => {
+    this.props.navigation.navigate('Auth');
+  }
+
+  _signUp = async () => {
+    this.props.navigation.navigate('SignUp');
+  }
+
+  _goBack = async () => {
+    this.props.navigation.goBack();
+  }
+
   render() {
       return(
         <Container style={{backgroundColor: 'black'}}>
@@ -31,11 +46,15 @@ class LoginScreen extends React.Component {
             <Row style={styles.bottomSpace}>
               <Grid>
               <Row style={styles.buttonSpace}>
-                <Button bordered dark style={styles.button}>
+                <Button bordered dark style={styles.button} onPress={this._signIn}>
                   <Icon name='arrow-forward'/>
                 </Button>
               </Row>
-              <Row style={styles.floorSpace} />
+              <Row style={styles.floorSpace}>
+                <TouchableOpacity onPress={this._signUp}>
+                  <Text style={styles.createAccountLink}>Create an Account</Text>
+                </TouchableOpacity>
+              </Row>
               </Grid>
             </Row>
           </Grid>
@@ -48,10 +67,10 @@ module.exports = LoginScreen;
 
 const styles = ScaledSheet.create({
     content: {
-      backgroundColor: '#69F3B8',
+      backgroundColor: COLORS.TEAL,
     },
     topSpace: {
-      //backgroundColor: 'red',
+      //backgroundColor: 'blue',
       flex: 1
     },
     middleSpace: {
@@ -67,11 +86,11 @@ const styles = ScaledSheet.create({
       alignSelf: 'stretch'
     },
     formGroup: {
-      //ackgroundColor: 'yellow',
+      //backgroundColor: 'yellow',
     },
     title: {
       fontSize: moderateScale(40, 0.2),
-      color: 'black',
+      color: COLORS.BLACK,
       fontWeight: 'bold',
       alignSelf: 'center'
     },
@@ -85,21 +104,29 @@ const styles = ScaledSheet.create({
       flex: moderateScale(1, 0.3)
     },
     inputBox : {
-      borderBottomColor: 'black'
+      borderColor: COLORS.BLACK,
+      borderRadius: 2,
+      borderWidth: 10,
     },
     buttonSpace: {
       flex:1,
-      //backgroundColor: "yellow",
+      //backgroundColor: 'green',
       alignItems: 'center',
       justifyContent: 'center'
     },
     floorSpace : {
-      flex: 2
+      flex: 2,
+      alignItems: 'center',
+      justifyContent: 'center'
     }, 
     button: {
       justifyContent: 'center',
       height: 60,
       width: 60,
       borderRadius: 30
+    },
+    createAccountLink: {
+      textAlign: 'center',
+      textDecorationLine: 'underline'
     }
   });

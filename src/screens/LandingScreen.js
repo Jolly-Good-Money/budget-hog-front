@@ -1,22 +1,29 @@
 import React from 'react';
 import {
-    View,
-    Text
-} from 'react-native';
+    Button,
+    Text,
+    Container
+} from 'native-base';
 
-export default class LandingScreen extends React.Component {
+class LandingScreen extends React.Component {
+    _signInEmail = async () => {
+        this.props.navigation.navigate('SignIn');
+    }
 
-    constructor(props) {
-        super(props);
-        Navigation.events().bindComponent(this);
+    _signInFacebook = async () => {
+    }
+  
+    _signInGoogle = async () => {
     }
 
     render() {
-        <View>
-            <Text>
-                LandingScreen!
-            </Text>
-        </View>
+        return (
+            <Container>
+                <Text>LandingScreen!</Text>
+                <Button title="SignInEmail" onPress={this._signInEmail}>
+                </Button>
+            </Container>
+            );
     }
 }
 

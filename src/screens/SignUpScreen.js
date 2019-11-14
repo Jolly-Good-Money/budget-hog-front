@@ -1,22 +1,24 @@
 import React from 'react';
 import {
-    View,
-    Text
-} from 'react-native';
+    Button,
+    Text,
+    Container
+} from 'native-base';
 
 export default class SignUpScreen extends React.Component {
 
-    constructor(props) {
-        super(props);
-        Navigation.events().bindComponent(this);
+    _goToLanding = async () => {
+        this.props.navigation.navigate('Landing');
     }
 
     render() {
-        <View>
-            <Text>
-                SignUpScreen!
-            </Text>
-        </View>
+        return (
+        <Container>
+            <Text>SignUpScreen!</Text>
+            <Button title="Go back" onPress={this._goToLanding}>
+                </Button>
+        </Container>
+        );
     }
 }
 

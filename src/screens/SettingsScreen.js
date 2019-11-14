@@ -1,22 +1,33 @@
 import React from 'react';
 import {
-    View,
-    Text
-} from 'react-native';
+    Button,
+    Text,
+    Container
+} from 'native-base';
 
 export default class SettingsScreen extends React.Component {
 
-    constructor(props) {
-        super(props);
-        Navigation.events().bindComponent(this);
+    _goBack = async () => {
+        this.props.navigation.goBack();
+    }
+
+    _logOut = async () => {
+        this.props.navigation.navigate('NoAuth');
     }
 
     render() {
-        <View>
-            <Text>
-                SettingsScreen!
-            </Text>
-        </View>
+        return (
+            <Container>
+                <Text>SettingsScreen!</Text>
+                <Button onPress={this._goBack}>
+                    <Text>Go Home</Text>
+                </Button>
+
+                <Button onPress={this._logOut}>
+                    <Text>LogOut</Text>
+                    </Button>
+            </Container>
+            );
     }
 }
 

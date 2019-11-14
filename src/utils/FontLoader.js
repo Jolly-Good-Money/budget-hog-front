@@ -1,8 +1,8 @@
 import React from 'react';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
-import Roboto from '../../node_modules/native-base/Fonts/Roboto_medium.ttf'
-import Roboto_medium from '../../node_modules/native-base/Fonts/Roboto.ttf'
+import Roboto from '../../node_modules/native-base/Fonts/Roboto_medium.ttf';
+import Roboto_medium from '../../node_modules/native-base/Fonts/Roboto.ttf';
 
 export default class FontLoader extends React.Component {
     constructor(props) {
