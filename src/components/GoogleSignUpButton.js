@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Text, Icon} from 'native-base';
+import { withNavigation } from 'react-navigation';
 
 class GoogleSignUpButton extends React.Component {
 
@@ -18,4 +19,4 @@ class GoogleSignUpButton extends React.Component {
 
 }
 
-module.exports = GoogleSignUpButton;
+module.exports = withNavigation(GoogleSignUpButton);

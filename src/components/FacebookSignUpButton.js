@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Text, Icon} from 'native-base';
+import { withNavigation } from 'react-navigation';
 
 class FacebookSignUpButton extends React.Component {
 
@@ -18,4 +19,4 @@ class FacebookSignUpButton extends React.Component {
 
 }
 
-module.exports = FacebookSignUpButton;
+module.exports = withNavigation(FacebookSignUpButton);
