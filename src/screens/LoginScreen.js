@@ -1,11 +1,16 @@
 import React from 'react';
 import { Label, Form, Item, Input, Container, Icon, Button, Title, Text } from 'native-base';
+import { StyleSheet } from 'react-native'
 import { Row, Col, Grid} from 'react-native-easy-grid';
-import { moderateScale, ScaledSheet } from 'react-native-size-matters';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { RFPercentage } from 'react-native-responsive-fontsize';
 import COLORS from '../utils/Colors';
 
 class LoginScreen extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
 
   _signIn = async () => {
     this.props.navigation.navigate('Auth');
@@ -19,44 +24,67 @@ class LoginScreen extends React.Component {
     this.props.navigation.goBack();
   }
 
+  _signInGoogle = async () => {
+
+  }
+
+  _signInFacebook = async () => {
+
+  }
+
   render() {
       return(
         <Container style={{backgroundColor: 'black'}}>
           <Grid style={styles.content}>
-            <Row style={styles.topSpace}/>
-            <Row style={styles.middleSpace}>
+            <Col style={styles.left}/>
+            <Col style={styles.center}>
               <Grid>
-                <Col style={styles.left}/>
-                <Col style={styles.center}>
+                <Row style={styles.topSpace}/>
+                <Row style={styles.middleSpace}>
                   <Title style={styles.title}>BudgetHog</Title>
                   <Form style={styles.formGroup}>
                     <Item floatingLabel style={styles.inputBox}>
-                      <Label>Username</Label>
+                      <Label style={{color: COLORS.WHITE}}>Username</Label>
                       <Input/>
                     </Item>
                     <Item floatingLabel style={styles.inputBox}>
-                      <Label>Password</Label>
+                      <Label style={{color: COLORS.WHITE}}>Password</Label>
                       <Input secureTextEntry/>
                     </Item>
                   </Form>
-                </Col>
-                <Col style={styles.right}/>
+                  <Row style={styles.loginButtonSpace}>
+                    <Button bordered dark style={styles.loginButton} onPress={this._signIn}>
+                      <Icon name='arrow-forward' style={{color: COLORS.WHITE}}/>
+                    </Button>
+                  </Row>
+                </Row>
+                <Row style={styles.bottomSpace}>
+                          <Grid>
+                          <Row style={styles.signUpSpace}>
+                            <Text style={{color: COLORS.WHITE}}>Don't have an account?</Text>
+                            <TouchableOpacity onPress={this._signUp}>
+                              <Text style={styles.signUpLink}>Sign up here</Text>
+                            </TouchableOpacity>
+                          </Row>
+                          <Row style={styles.thirdPartyButtonSpace}>
+                            <Button full rounded iconLeft onPress={this._signInFacebook}>
+                              <Icon name='logo-facebook'/>
+                              <Text>
+                                Continue with Facebook
+                              </Text>
+                            </Button>
+                            <Button full rounded iconLeft onPress={this._signInGoogle}>
+                              <Icon name='logo-google'/>
+                              <Text>
+                                Sign in with Google
+                              </Text>
+                            </Button>
+                          </Row>
+                          </Grid>
+                        </Row>
               </Grid>
-            </Row>
-            <Row style={styles.bottomSpace}>
-              <Grid>
-              <Row style={styles.buttonSpace}>
-                <Button bordered dark style={styles.button} onPress={this._signIn}>
-                  <Icon name='arrow-forward'/>
-                </Button>
-              </Row>
-              <Row style={styles.floorSpace}>
-                <TouchableOpacity onPress={this._signUp}>
-                  <Text style={styles.createAccountLink}>Create an Account</Text>
-                </TouchableOpacity>
-              </Row>
-              </Grid>
-            </Row>
+            </Col>
+            <Col style={styles.right}/>
           </Grid>
         </Container>
       );
@@ -65,9 +93,10 @@ class LoginScreen extends React.Component {
 
 module.exports = LoginScreen;
 
-const styles = ScaledSheet.create({
+const styles = StyleSheet.create({
     content: {
-      backgroundColor: COLORS.TEAL,
+      backgroundColor: COLORS.BLACK,
+      color: COLORS.WHITE
     },
     topSpace: {
       //backgroundColor: 'blue',
@@ -76,11 +105,11 @@ const styles = ScaledSheet.create({
     middleSpace: {
       flexDirection: 'column',
       alignItems: 'stretch',
-      flex: 2
+      flex: 4
     },
     bottomSpace: {
       //backgroundColor: 'red',
-      flex: 2
+      flex: 3
     },
     grid: {
       alignSelf: 'stretch'
@@ -89,44 +118,61 @@ const styles = ScaledSheet.create({
       //backgroundColor: 'yellow',
     },
     title: {
-      fontSize: moderateScale(40, 0.2),
-      color: COLORS.BLACK,
+      fontSize: RFPercentage(8),
       fontWeight: 'bold',
       alignSelf: 'center'
     },
     left: {
-      flex: moderateScale(1, 0.3)
+      //backgroundColor: 'yellow',
+      flex: 1
     },
     center: {
       flex: 6
     },
     right: {
-      flex: moderateScale(1, 0.3)
+      //backgroundColor: 'yellow',
+      flex: 1
     },
     inputBox : {
-      borderColor: COLORS.BLACK,
       borderRadius: 2,
       borderWidth: 10,
+      borderColor: COLORS.WHITE,
+      marginHorizontal: 10
     },
-    buttonSpace: {
-      flex:1,
+    signUpSpace: {
       //backgroundColor: 'green',
+      flex: 3,
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center'
     },
-    floorSpace : {
-      flex: 2,
+    thirdPartyButtonSpace : {
+      flex: 8,
+      flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center'
-    }, 
-    button: {
+      justifyContent: 'space-evenly'
+    },
+    thirdPartyButton: {
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    loginButtonSpace: {
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    loginButton: {
       justifyContent: 'center',
       height: 60,
       width: 60,
-      borderRadius: 30
+      borderRadius: 30,
+      borderColor: COLORS.WHITE
     },
-    createAccountLink: {
+    signUpLink: {
+      color: COLORS.TEAL,
       textAlign: 'center',
       textDecorationLine: 'underline'
+    },
+    thirdPartyLoginText: {
+      backgroundColor: 'red'
     }
   });

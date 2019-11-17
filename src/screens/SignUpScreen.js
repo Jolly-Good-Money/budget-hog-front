@@ -7,15 +7,15 @@ import {
 
 export default class SignUpScreen extends React.Component {
 
-    _goToLanding = async () => {
-        this.props.navigation.navigate('Landing');
+    _goToSignIn = async () => {
+        this.props.navigation.navigate('SignIn');
     }
 
     render() {
         return (
         <Container>
             <Text>SignUpScreen!</Text>
-            <Button title="Go back" onPress={this._goToLanding}>
+            <Button title="Go back" onPress={this._goToSignIn}>
                 </Button>
         </Container>
         );

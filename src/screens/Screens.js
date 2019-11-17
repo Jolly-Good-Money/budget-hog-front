@@ -4,7 +4,6 @@ import LoginScreen from './LoginScreen';
 import SignUpScreen from './SignUpScreen';
 import HomeScreen from './HomeScreen';
 import SettingsScreen from './SettingsScreen';
-import LandingScreen from './LandingScreen';
 
 const AuthorizedNavigator = createStackNavigator(
     {
@@ -28,13 +27,10 @@ const UnauthorizedNavigator = createStackNavigator(
     },
     SignIn: {
       screen: LoginScreen
-    },
-    Landing: {
-      screen: LandingScreen
     }
   },
   {
-    initialRouteName: 'Landing',
+    initialRouteName: 'SignIn',
     headerMode: 'none',
   }
 )

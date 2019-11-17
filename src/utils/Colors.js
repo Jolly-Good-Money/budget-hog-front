@@ -2,7 +2,7 @@ export default {
     TEAL: '#47C991',
     YELLOW: '#FFB85A',
     PINK: '#ED5482',
-    BLACK: '#133A29',
+    BLACK: '#444444',
     WHITE: '#FFFFFF'
 };
 
