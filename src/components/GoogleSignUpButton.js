@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, Icon} from 'native-base';
+import { Button, Text, Image} from 'native-base';
 import { withNavigation } from 'react-navigation';
 
 class GoogleSignUpButton extends React.Component {
@@ -10,8 +10,7 @@ class GoogleSignUpButton extends React.Component {
 
     render() {
         return (
-            <Button full rounded iconLeft onPress={this._signIn}>
-                <Icon name='logo-google'/>
+            <Button full rounded onPress={this._signIn}>
                 <Text>Sign in with Google</Text>
             </Button>
         );

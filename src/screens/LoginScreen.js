@@ -38,6 +38,11 @@ class LoginScreen extends React.Component {
                                 <Row style={styles.bottomSpace}>
                                     <Grid>
                                         <Row style={styles.signUpSpace}>
+                                            
+                                        </Row>
+                                        <Row
+                                            style={styles.thirdPartyButtonSpace}
+                                        >
                                             <Text
                                                 style={{ color: COLORS.WHITE }}
                                             >
@@ -50,12 +55,6 @@ class LoginScreen extends React.Component {
                                                     Sign up here
                                                 </Text>
                                             </TouchableOpacity>
-                                        </Row>
-                                        <Row
-                                            style={styles.thirdPartyButtonSpace}
-                                        >
-                                            <FacebookSignUpButton />
-                                            <GoogleSignUpButton />
                                         </Row>
                                     </Grid>
                                 </Row>
@@ -119,7 +118,7 @@ const styles = StyleSheet.create({
         flex: 8,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
     },
     thirdPartyButton: {
         justifyContent: 'center',
