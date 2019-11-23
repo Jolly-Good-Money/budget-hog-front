@@ -2,37 +2,65 @@ import React from 'react';
 import COLORS from '../utils/Colors';
 import { StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
-import { Title, Form, Item, Icon, Label, Input, Row, Button } from 'native-base';
+import {
+    Title,
+    Form,
+    Item,
+    Icon,
+    Label,
+    Input,
+    Row,
+    Button,
+    Text,
+    Grid
+} from 'native-base';
 
 class LoginForm extends React.Component {
-
     constructor(props) {
         super(props);
     }
 
     _signIn = async () => {
         this.props.navigation.navigate('Auth');
-    }
+    };
 
     render() {
-        return(
+        return (
             <Row style={styles.content}>
-                {/* <Title style={styles.title}>BudgetHog</Title> */}
-                <Form style={styles.formGroup}>
-                <Item floatingLabel style={styles.inputBox}>
-                    <Label style={{color: COLORS.WHITE}}>Username</Label>
-                    <Input/>
-                </Item>
-                <Item floatingLabel style={styles.inputBox}>
-                    <Label style={{color: COLORS.WHITE}}>Password</Label>
-                    <Input secureTextEntry/>
-                </Item>
-                </Form>
-                <Row style={styles.loginButtonSpace}>
-                    <Button bordered style={styles.loginButton} onPress={this._signIn}>
-                        <Icon name='arrow-forward' style={{color: COLORS.WHITE}}/>
-                    </Button>
-                </Row>
+                <Grid>
+                    <Title style={styles.title}>BudgetHog</Title>
+                    <Row style={{justifyContent: 'center', alignItems: 'center'}}>
+                        <Form style={styles.formGroup}>
+                            <Item floatingLabel style={styles.inputBox}>
+                                <Label style={{ color: COLORS.WHITE }}>Email</Label>
+                                <Input
+                                    returnKeyType = {'next'} 
+                                    onSubmitEditing={() => {this.passwordInput._root.focus();}}
+                                    blurOnSubmit={false}
+                                />
+                            </Item>
+                            <Item floatingLabel style={styles.inputBox}>
+                                <Label style={{ color: COLORS.WHITE }}>Password</Label>
+                                <Input
+                                    secureTextEntry
+                                    onSubmitEditing={this._signIn}
+                                    getRef={input => {this.passwordInput = input;}}/>
+                            </Item>
+                        </Form>
+                    </Row>
+                    <Row style={styles.loginButtonSpace}>
+                        <Button
+                            block
+                            bordered
+                            rounded
+                            light
+                            style={styles.loginButton}
+                            onPress={this._signIn}
+                        >
+                            <Text style={{color: COLORS.BLACK, fontWeight: 'bold'}}>Login</Text>
+                        </Button>
+                    </Row>
+                </Grid>
             </Row>
         );
     }
@@ -40,32 +68,31 @@ class LoginForm extends React.Component {
 
 const styles = StyleSheet.create({
     content: {
-        flexDirection: 'column'
+        flexDirection: 'column',
+        //backgroundColor: 'yellow',
     },
     loginButtonSpace: {
         justifyContent: 'center',
-        alignItems: 'center'
     },
     title: {
         fontSize: 50,
         fontWeight: 'bold',
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     loginButton: {
-        justifyContent: 'center',
-        height: 60,
-        width: 60,
-        borderRadius: 30,
-        borderColor: COLORS.WHITE
+        backgroundColor: COLORS.TEAL,
+        alignSelf: 'flex-end',
+        flex: .9,
     },
-    inputBox : {
+    inputBox: {
         borderRadius: 2,
         borderWidth: 10,
         borderColor: COLORS.WHITE,
-        marginHorizontal: 10
+        marginHorizontal: 10,
     },
     formGroup: {
-        //backgroundColor: 'yellow',
+        //backgroundColor: 'red',
+        flex: 1
     },
 });
 

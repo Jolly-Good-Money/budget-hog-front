@@ -2,8 +2,6 @@ import React from 'react';
 import { Container, Text, Content, Row, Col, Grid, Title } from 'native-base';
 import { StyleSheet, StatusBar } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import FacebookSignUpButton from '../components/FacebookSignUpButton';
-import GoogleSignUpButton from '../components/GoogleSignUpButton';
 import LoginForm from '../components/LoginForm';
 import COLORS from '../utils/Colors';
 
@@ -33,15 +31,11 @@ class LoginScreen extends React.Component {
                         <Col style={styles.center}>
                             <Grid>
                                 <Row style={styles.topSpace} />
-                                <Title style={styles.title}>BudgetHog</Title>
                                 <LoginForm style={styles.middleSpace} />
                                 <Row style={styles.bottomSpace}>
                                     <Grid>
-                                        <Row style={styles.signUpSpace}>
-                                            
-                                        </Row>
                                         <Row
-                                            style={styles.thirdPartyButtonSpace}
+                                            style={styles.signUpSpace}
                                         >
                                             <Text
                                                 style={{ color: COLORS.WHITE }}
@@ -77,16 +71,17 @@ const styles = StyleSheet.create({
     },
     topSpace: {
         //backgroundColor: 'blue',
-        flex: 1,
+        flex: 0.4,
+        flexGrow: 0.4
     },
     middleSpace: {
         flexDirection: 'column',
         alignItems: 'stretch',
-        flex: 1,
+        flex: 0.5,
     },
     bottomSpace: {
         //backgroundColor: 'red',
-        flex: 1,
+        flex: 0.1,
     },
     grid: {
         alignSelf: 'stretch',
@@ -109,27 +104,13 @@ const styles = StyleSheet.create({
     },
     signUpSpace: {
         //backgroundColor: 'green',
-        flex: 3,
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    thirdPartyButtonSpace: {
-        flex: 8,
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    thirdPartyButton: {
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     signUpLink: {
         color: COLORS.TEAL,
         textAlign: 'center',
         textDecorationLine: 'underline',
-    },
-    thirdPartyLoginText: {
-        backgroundColor: 'red',
     },
 });
