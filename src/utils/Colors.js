@@ -3,7 +3,8 @@ export default {
     YELLOW: '#FFB85A',
     PINK: '#ED5482',
     BLACK: '#444444',
-    WHITE: '#FFFFFF'
+    WHITE: '#FFFFFF',
+    GRAY: '#B1B1B1',
 };
 
 /* As hex codes */

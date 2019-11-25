@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, StatusBar } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import COLORS from '../utils/Colors';
 import SignUpForm from '../components/SignUpForm';
 import {
@@ -22,21 +22,32 @@ export default class SignUpScreen extends React.Component {
     render() {
         return (
         <Container>
-            <StatusBar hidden />
             <Content
                 contentContainerStyle={{ flexGrow: 1 }}
-                style={styles.content}
             >
-                <Grid>
+                <Grid style={styles.content}>
                     <Col style={styles.left} />
                     <Col style={styles.center} >
                         <Grid>
-                            <Row />
-                            <Row style={styles.middleSpace}>
-                                <Title style={styles.title}>BudgetHog</Title>
-                                <SignUpForm />
+                            <Row style={styles.topSpace}/>
+                            <SignUpForm style={styles.middleSpace}/>
+                            <Row style={styles.bottomSpace}>
+                                <Grid style={{alignItems: 'center'}}>
+                                    <Row style={styles.textArea}>
+                                        <Text style={styles.text}>By continuing, you agree to our</Text>
+                                    </Row>
+                                    <Row style={styles.textArea}>
+                                        <TouchableWithoutFeedback>
+                                            <Text style={styles.link}>Terms of Service</Text>
+                                        </TouchableWithoutFeedback>
+                                        <Text style={styles.text}> and </Text>
+                                        <TouchableWithoutFeedback>
+                                            <Text style={styles.link}>Privacy Policy</Text>
+                                        </TouchableWithoutFeedback>
+                                        <Text style={styles.text}>.</Text>
+                                    </Row>
+                                </Grid>
                             </Row>
-                            <Row />
                         </Grid>
                     </Col>
                     <Col style={styles.right} />
@@ -58,20 +69,48 @@ const styles = StyleSheet.create({
         color: COLORS.WHITE,
     },
     left: {
-        //backgroundColor: 'yellow',
         flex: 1,
     },
     center: {
         flex: 6,
     },
     right: {
-        //backgroundColor: 'yellow',
         flex: 1,
+    },
+    topSpace: {
+        flex: 0.2,
+        flexShrink: 0.1,
+        //backgroundColor: 'yellow',
     },
     middleSpace: {
         flexDirection: 'column',
         alignItems: 'stretch',
-        flex: 1,
+        flex: 0.5,
+    },
+    bottomSpace: {
+        //backgroundColor: 'red',
+        flexDirection: 'column',
+        flex: 0.3,
+    },
+    textArea: {
+        height: 15,
+    },
+    text: {
+        textAlign: 'center',
+        fontSize: 12,
+        color: COLORS.GRAY,
+        //backgroundColor: 'red',
+    },
+    signUpSpace: {
+        //backgroundColor: 'green',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 15,
+    },
+    link: {
+        color: COLORS.YELLOW,
+        fontSize: 12,
+        textDecorationLine: 'underline',
     },
 });
 

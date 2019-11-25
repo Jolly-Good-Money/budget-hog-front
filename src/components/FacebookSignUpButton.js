@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Text, Icon} from 'native-base';
+import { StyleSheet } from 'react-native';
+import { Button, Text} from 'native-base';
 import { withNavigation } from 'react-navigation';
 
 class FacebookSignUpButton extends React.Component {
@@ -10,13 +11,22 @@ class FacebookSignUpButton extends React.Component {
 
     render() {
         return (
-            <Button full rounded iconLeft onPress={this._signIn}>
-                <Icon name='logo-facebook'/>
+            <Button
+                full
+                rounded
+                style={styles.button}
+                onPress={this._signIn}>
                 <Text>Continue with Facebook</Text>
             </Button>
         );
     }
 
 }
+
+const styles = StyleSheet.create({
+    button: {
+        flex: 1
+    }
+});
 
 module.exports = withNavigation(FacebookSignUpButton);

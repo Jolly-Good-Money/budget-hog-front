@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Text, Content, Row, Col, Grid, Title } from 'native-base';
-import { StyleSheet, StatusBar } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Container, Text, Content, Row, Col, Grid, Title, View } from 'native-base';
+import { StyleSheet } from 'react-native';
+import FacebookSignUpButton from '../components/FacebookSignUpButton';
 import LoginForm from '../components/LoginForm';
 import COLORS from '../utils/Colors';
 
@@ -10,10 +10,6 @@ class LoginScreen extends React.Component {
         super(props);
     }
 
-    _signUp = async () => {
-        this.props.navigation.navigate('SignUp');
-    };
-
     _goBack = async () => {
         this.props.navigation.goBack();
     };
@@ -21,10 +17,8 @@ class LoginScreen extends React.Component {
     render() {
         return (
             <Container>
-                <StatusBar hidden />
                 <Content
                     contentContainerStyle={{ flexGrow: 1 }}
-                    style={styles.content}
                 >
                     <Grid style={styles.content}>
                         <Col style={styles.left} />
@@ -35,20 +29,18 @@ class LoginScreen extends React.Component {
                                 <Row style={styles.bottomSpace}>
                                     <Grid>
                                         <Row
-                                            style={styles.signUpSpace}
+                                            style={styles.separatingSpace}
                                         >
+                                            <View style={styles.hairline}/>
                                             <Text
-                                                style={{ color: COLORS.WHITE }}
+                                                style={styles.separatingText}
                                             >
-                                                Don't have an account?
+                                                OR
                                             </Text>
-                                            <TouchableOpacity
-                                                onPress={this._signUp}
-                                            >
-                                                <Text style={styles.signUpLink}>
-                                                    Sign up here
-                                                </Text>
-                                            </TouchableOpacity>
+                                            <View style={styles.hairline}/>
+                                        </Row>
+                                        <Row style={styles.thirdPartyButtons}>
+                                            <FacebookSignUpButton />
                                         </Row>
                                     </Grid>
                                 </Row>
@@ -72,19 +64,15 @@ const styles = StyleSheet.create({
     topSpace: {
         //backgroundColor: 'blue',
         flex: 0.4,
-        flexGrow: 0.4
     },
     middleSpace: {
         flexDirection: 'column',
         alignItems: 'stretch',
-        flex: 0.5,
+        flex: 0.4,
     },
     bottomSpace: {
         //backgroundColor: 'red',
-        flex: 0.1,
-    },
-    grid: {
-        alignSelf: 'stretch',
+        flex: 0.2,
     },
     title: {
         fontSize: 50,
@@ -102,15 +90,24 @@ const styles = StyleSheet.create({
         //backgroundColor: 'yellow',
         flex: 1,
     },
-    signUpSpace: {
+    separatingSpace: {
         //backgroundColor: 'green',
-        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingHorizontal: 15,
     },
-    signUpLink: {
-        color: COLORS.TEAL,
+    separatingText: {
+        color: COLORS.GRAY,
+        flex: 0.2,
         textAlign: 'center',
-        textDecorationLine: 'underline',
+        fontSize: 12,
     },
+    hairline: {
+        backgroundColor: COLORS.GRAY,
+        height: 1,
+        flex: 0.4,
+    },
+    thirdPartyButtons: {
+        justifyContent: 'center',
+    }
 });

@@ -4,6 +4,7 @@ import LoginScreen from './LoginScreen';
 import SignUpScreen from './SignUpScreen';
 import HomeScreen from './HomeScreen';
 import SettingsScreen from './SettingsScreen';
+import ForgotScreen from './ForgotScreen';
 
 const AuthorizedNavigator = createStackNavigator(
     {
@@ -27,6 +28,9 @@ const UnauthorizedNavigator = createStackNavigator(
     },
     SignIn: {
       screen: LoginScreen
+    },
+    ForgotPassword: {
+      screen: ForgotScreen
     }
   },
   {
