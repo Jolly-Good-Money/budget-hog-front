@@ -1,8 +1,10 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { createAppContainer } from 'react-navigation';
 import Screen from './screens/Screens';
 import FontLoader from './utils/FontLoader';
+import getTheme from '../native-base-theme/components';
+import material from '../native-base-theme/variables/material';
+import { StyleProvider } from 'native-base';
 
 export default class BudgetHog extends React.Component {
 
@@ -11,7 +13,9 @@ export default class BudgetHog extends React.Component {
         return (
             <FontLoader>
                 <StatusBar hidden />
-                <AppContainer />
+                    <StyleProvider style={getTheme(material)}>
+                        <AppContainer />
+                    </StyleProvider>
             </FontLoader>
         );
     }

@@ -11,7 +11,7 @@ import {
     Row,
     Button,
     Text,
-    Grid
+    Grid,
 } from 'native-base';
 
 class LoginForm extends React.Component {
@@ -36,7 +36,9 @@ class LoginForm extends React.Component {
             <Row style={styles.content}>
                 <Grid>
                     <Row style={styles.titleSpace}>
-                        <Title style={styles.title}>BudgetHog</Title>
+                        <Title style={styles.title}>
+                            <Label style={styles.titleText}>BudgetHog</Label>
+                        </Title>
                     </Row>
                     <Row style={{justifyContent: 'center'}}>
                         <Form style={styles.formGroup}>
@@ -95,10 +97,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     title: {
-        fontSize: 53,
-        fontWeight: 'bold',
         alignSelf: 'flex-end',
         textAlign: 'center',
+        //backgroundColor: 'red',
+    },
+    titleText: {
+        fontSize: 44,
         //backgroundColor: 'red',
     },
     loginButton: {

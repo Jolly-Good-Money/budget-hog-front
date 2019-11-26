@@ -18,7 +18,9 @@ class SignUpForm extends React.Component {
             <Row style={styles.content}>
                 <Grid>
                     <Row style={styles.titleSpace}>
-                        <Title style={styles.title}>Register</Title>
+                        <Title style={styles.title}>
+                            <Label style={styles.titleText}>Register</Label>
+                        </Title>
                     </Row>
                     <Row style={styles.interactiveSpace}>
                         <Form style={styles.formGroup}>
@@ -81,10 +83,11 @@ const styles = StyleSheet.create({
         flex: 0.6,
     },
     title: {
-        fontSize: 50,
-        fontWeight: 'bold',
         alignSelf: 'flex-end',
         //backgroundColor: 'red',
+    },
+    titleText: {
+        fontSize: 44,
     },
     formGroup: {
         //backgroundColor: 'red',
