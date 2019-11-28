@@ -8,9 +8,11 @@ import COLORS from '../utils/Colors';
 class LoginScreen extends React.Component {
     constructor(props) {
         super(props);
+
+        this.goBack = this.goBack.bind(this);
     }
 
-    _goBack = async () => {
+    async goBack() {
         this.props.navigation.goBack();
     };
 

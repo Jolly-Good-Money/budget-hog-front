@@ -27,7 +27,7 @@
       "supportsTablet": true
     },
     "androidNavigationBar": {
-     "visible": false
+      "visible": false
     }
   }
 }

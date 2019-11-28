@@ -20,7 +20,8 @@ export default (variables /* : * */ = variable) => {
         }
       },
       'NativeBase.Label': {
-        paddingTop: 5
+        paddingTop: 5,
+        fontFamily: 'Montserrat_medium',
       },
       'NativeBase.Icon': {
         top: 6,

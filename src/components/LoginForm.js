@@ -17,17 +17,21 @@ import {
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
+
+        this.signIn=this.signIn.bind(this);
+        this.signUp=this.signUp.bind(this);
+        this.forgotPassword=this.forgotPassword.bind(this);
     }
 
-    _signIn = async () => {
+    async signIn() {
         this.props.navigation.navigate('Auth');
     };
     
-    _signUp = async () => {
+    async signUp() {
         this.props.navigation.navigate('SignUp');
     };
 
-    _forgotPassword = async () => {
+    async forgotPassword() {
         this.props.navigation.navigate('ForgotPassword');
     }
 
@@ -43,26 +47,26 @@ class LoginForm extends React.Component {
                     <Row style={{justifyContent: 'center'}}>
                         <Form style={styles.formGroup}>
                             <Item floatingLabel style={styles.inputBox}>
-                                <Label style={{ color: COLORS.WHITE }}>Email</Label>
+                                <Label>Email</Label>
                                 <Input
                                     returnKeyType = {'next'} 
                                     onSubmitEditing={() => {this.passwordInput._root.focus();}}
                                     blurOnSubmit={false}
                                 />
                             </Item>
-                            {/* Increate touchable area */}
-                            <TouchableWithoutFeedback onPress={this._signUp}>
+                            {/* Increase touchable area */}
+                            <TouchableWithoutFeedback onPress={this.signUp}>
                                 <Text style={styles.links}>Create Account</Text>
                             </TouchableWithoutFeedback>
                             <Item floatingLabel style={styles.inputBox}>
-                                <Label style={{ color: COLORS.WHITE }}>Password</Label>
+                                <Label>Password</Label>
                                 <Input
                                     secureTextEntry
-                                    onSubmitEditing={this._signIn}
+                                    onSubmitEditing={this.signIn}
                                     getRef={input => {this.passwordInput = input;}}/>
                             </Item>
-                            {/* Increate touchable area */}
-                            <TouchableWithoutFeedback onPress={this._forgotPassword}>
+                            {/* Increase touchable area */}
+                            <TouchableWithoutFeedback onPress={this.forgotPassword}>
                                 <Text style={styles.links}>Forgot Password?</Text>
                             </TouchableWithoutFeedback>
                         </Form>
@@ -73,7 +77,7 @@ class LoginForm extends React.Component {
                             rounded
                             light
                             style={styles.loginButton}
-                            onPress={this._signIn}
+                            onPress={this.signIn}
                         >
                             <Text style={styles.buttonText}>Login</Text>
                         </Button>
@@ -117,6 +121,7 @@ const styles = StyleSheet.create({
     },
     inputBox: {
         marginLeft: 0,
+        marginTop: 0,
         //backgroundColor: 'yellow',
     },
     formGroup: {
@@ -125,9 +130,11 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     links: {
+        //backgroundColor: 'red',
         color: COLORS.TEAL,
         fontSize: 12,
         alignSelf: 'flex-end',
+        flex: .2,
     },
 });
 

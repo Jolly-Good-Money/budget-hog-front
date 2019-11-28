@@ -15,7 +15,13 @@ import {
 
 export default class SignUpScreen extends React.Component {
 
-    _goToSignIn = async () => {
+    constructor(props) {
+        super(props);
+
+        this.goToSignIn = this.goToSignIn.bind(this);
+    }
+
+    goToSignIn = async () => {
         this.props.navigation.navigate('SignIn');
     }
 

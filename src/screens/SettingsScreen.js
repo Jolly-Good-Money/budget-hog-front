@@ -7,11 +7,18 @@ import {
 
 export default class SettingsScreen extends React.Component {
 
-    _goBack = async () => {
+    constructor(props) {
+        super(props);
+
+        this.goBack = this.goBack.bind(this);
+        this.logOut = this.logOut.bind(this);
+    }
+
+    async goBack() {
         this.props.navigation.goBack();
     }
 
-    _logOut = async () => {
+    async logOut() {
         this.props.navigation.navigate('NoAuth');
     }
 
@@ -19,11 +26,11 @@ export default class SettingsScreen extends React.Component {
         return (
             <Container>
                 <Text>SettingsScreen!</Text>
-                <Button onPress={this._goBack}>
+                <Button onPress={this.goBack}>
                     <Text>Go Home</Text>
                 </Button>
 
-                <Button onPress={this._logOut}>
+                <Button onPress={this.logOut}>
                     <Text>LogOut</Text>
                     </Button>
             </Container>

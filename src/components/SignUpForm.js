@@ -7,9 +7,11 @@ import { Row, Item, Label, Input, Form, Title, Grid, Button, Text } from 'native
 class SignUpForm extends React.Component {
     constructor(props) {
         super(props);
+
+        this.signIn = this.signIn.bind(this);
     }
 
-    _signIn = async () => {
+    async signIn() {
 
     }
 
@@ -26,7 +28,7 @@ class SignUpForm extends React.Component {
                         <Form style={styles.formGroup}>
                             <Grid style={styles.inputSpace}>
                                 <Item floatingLabel style={styles.inputBox}>
-                                    <Label style={{ color: COLORS.WHITE }}>Email</Label>
+                                    <Label>Email</Label>
                                     <Input
                                         blurOnSubmit={false}
                                         returnKeyType = {'next'} 
@@ -34,7 +36,7 @@ class SignUpForm extends React.Component {
                                     />
                                 </Item>
                                 <Item floatingLabel style={styles.inputBox}>
-                                    <Label style={{ color: COLORS.WHITE }}>Password</Label>
+                                    <Label>Password</Label>
                                     <Input
                                         secureTextEntry
                                         blurOnSubmit={false}
@@ -48,7 +50,7 @@ class SignUpForm extends React.Component {
                                         secureTextEntry
                                         returnKeyType = {'go'}
                                         getRef={input => {this.confirmPasswordInput = input;}}
-                                        onSubmitEditing = {this._signIn}/>
+                                        onSubmitEditing = {this.signIn}/>
                                 </Item>
                             </Grid>
                             <Button
@@ -57,7 +59,7 @@ class SignUpForm extends React.Component {
                             rounded
                             light
                             style={styles.button}
-                            onPress={this._signIn}
+                            onPress={this.signIn}
                             >
                                 <Text style={styles.buttonText}>Sign Up</Text>
                             </Button>
