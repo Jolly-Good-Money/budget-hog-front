@@ -8,8 +8,14 @@ export class FacebookClient {
             'public_profile',
             'email'
         ];
+
+        this.initializeAsync = this.initializeAsync.bind(this);
         this.authenticateUser = this.authenticateUser.bind(this);
         this.fetchUserInformation = this.fetchUserInformation.bind(this);
+    }
+
+    initializeAsync() {
+        return Facebook.initializeAsync(CONFIG.facebook.appId, CONFIG.appName);
     }
 
     authenticateUser() {

@@ -2,10 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Text} from 'native-base';
 import { withNavigation } from 'react-navigation';
-import CONFIG from '../../configuration_settings.json';
 import { FacebookClient } from '../utils/FacebookClient';
-
-import * as FacebookLogin from 'expo-facebook';
 
 // If you want to use this make sure to get the APPID from BudgetHog Discord
 class FacebookSignUpButton extends React.Component {
@@ -13,31 +10,34 @@ class FacebookSignUpButton extends React.Component {
         super(props);
 
         this.signIn = this.signIn.bind(this);
-        this.onLoginSuccess = this.onLoginSuccess.bind(this);
         this.onFailure = this.onFailure.bind(this);
         this.onFetchSuccess = this.onFetchSuccess.bind(this);
     }
 
-    async onLoginSuccess(authenticationResult) {
-        console.log(JSON.stringify(authenticationResult));
-        this.facebookClient.fetchUserInformation(authenticationResult).then(this.onFetchSuccess).catch(this.onFailure)
-        this.onFetchSuccess(fetchUserInfoResult)
-        this.props.navigation.navigate('Auth');
-    }
-
     onFailure({ error }) {
-      alert(`Exception: ${error}`);
+      alert(`Exception received: ${error}`);
     }
 
-    onFetchSuccess(fetchUserInfoResult) {
-        console.log(fetchUserInfoResult.json());
+    onFetchSuccess() {
+        console.log("This is supposed to be printed LAST");
+        this.props.navigation.navigate('Auth');
     }
 
 
 
     async signIn() {
         this.facebookClient = new FacebookClient();
-        this.facebookClient.authenticateUser().then(this.onLoginSuccess).catch(this.onFailure);
+        try {
+            await this.facebookClient.initializeAsync();
+            const authenticationResult = await this.facebookClient.authenticateUser();  
+            const fetchInfoCall = await this.facebookClient.fetchUserInformation(authenticationResult);
+            const userInfo = await fetchInfoCall.json();
+            //console.log(JSON.stringify(userInfo, null, 3));
+        } catch (error) {
+            this.onFailure(error)
+        }
+
+        this.onFetchSuccess();
     }
 
     render() {
