@@ -1,23 +1,18 @@
 import * as SecureStore from 'expo-secure-store';
+import { DataConsumer } from './DataConsumer';
 
-export declare enum DataConsumer {
-    SERVER,
-    USER,
-    CLIENT
-}
-
-export default class StorageClient {
-    async retrieve(key: string, consumer: DataConsumer, options?: SecureStore.SecureStoreOptions): Promise<string> {
+export class StorageClient {
+    public async retrieve(key: string, consumer: DataConsumer, options?: SecureStore.SecureStoreOptions): Promise<string|null> {
         const keyToStore = this.buildKey(key, consumer);
         try {
-            const item = await SecureStore.getItemAsync(keyToStore, options);
-            return item;
+            return SecureStore.getItemAsync(keyToStore, options);            
         } catch (error) {
             alert(error);
+            return null;
         }
     }
 
-    async store(key: string, value: string, consumer: DataConsumer, options?: SecureStore.SecureStoreOptions) {
+    public async store(key: string, value: string, consumer: DataConsumer, options?: SecureStore.SecureStoreOptions): Promise<void> {
         const keyToStore = this.buildKey(key, consumer);
         try {
             await SecureStore.setItemAsync(keyToStore, value, options);
@@ -26,7 +21,8 @@ export default class StorageClient {
         }
     }
 
-    buildKey(key: string, context: DataConsumer): string {
+    private buildKey(key: string, context: DataConsumer): string {
         return context.toString().concat(".", key);
     }
 }
+
