@@ -7,19 +7,18 @@ export default class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
 
-        this.goToSettings = this.goToSettings.bind(this);
+        this.goBack = this.goBack.bind(this);
     }
 
-    async goToSettings() {
-        this.props.navigation.navigate('Settings');
-    }
+    async goBack() {
+        this.props.navigation.goBack();
+    };
 
     render() {
         return (
             <ScreenContainer>
-                <Text>HomeScreen!</Text>
-                <Button title="Go to Settings" onPress={this.goToSettings}>
-                </Button>
+                <Text>New Password Screen!</Text>
+                <Button title={"Go Back!"} onPress={this.goBack} />
             </ScreenContainer>
             );
     }

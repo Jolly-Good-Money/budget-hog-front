@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Text, Content, Row, Col, Grid, Title, View } from 'native-base';
+import {Text, Row, Grid, View } from 'native-base';
 import { StyleSheet } from 'react-native';
 import FacebookSignUpButton from '../components/FacebookSignUpButton';
-import LoginForm from '../components/LoginForm';
+import AuthenticationForm from '../components/LoginForm';
 import COLORS from '../utils/Colors';
+import ScreenContainer from './ScreenContainer';
 
 class LoginScreen extends React.Component {
     constructor(props) {
@@ -18,40 +19,30 @@ class LoginScreen extends React.Component {
 
     render() {
         return (
-            <Container>
-                <Content
-                    contentContainerStyle={{ flexGrow: 1 }}
-                >
-                    <Grid style={styles.content}>
-                        <Col style={styles.left} />
-                        <Col style={styles.center}>
-                            <Grid>
-                                <Row style={styles.topSpace} />
-                                <LoginForm style={styles.middleSpace} />
-                                <Row style={styles.bottomSpace}>
-                                    <Grid>
-                                        <Row
-                                            style={styles.separatingSpace}
-                                        >
-                                            <View style={styles.hairline}/>
-                                            <Text
-                                                style={styles.separatingText}
-                                            >
-                                                OR
-                                            </Text>
-                                            <View style={styles.hairline}/>
-                                        </Row>
-                                        <Row style={styles.thirdPartyButtons}>
-                                            <FacebookSignUpButton />
-                                        </Row>
-                                    </Grid>
-                                </Row>
-                            </Grid>
-                        </Col>
-                        <Col style={styles.right} />
-                    </Grid>
-                </Content>
-            </Container>
+            <ScreenContainer>
+                <Grid>
+                    <Row style={styles.topSpace} />
+                    <AuthenticationForm style={styles.middleSpace} />
+                    <Row style={styles.bottomSpace}>
+                        <Grid>
+                            <Row
+                                style={styles.separatingSpace}
+                            >
+                                <View style={styles.hairline}/>
+                                <Text
+                                    style={styles.separatingText}
+                                >
+                                    OR
+                                </Text>
+                                <View style={styles.hairline}/>
+                            </Row>
+                            <Row style={styles.thirdPartyButtons}>
+                                <FacebookSignUpButton />
+                            </Row>
+                        </Grid>
+                    </Row>
+                </Grid>
+            </ScreenContainer>
         );
     }
 }
@@ -59,10 +50,6 @@ class LoginScreen extends React.Component {
 module.exports = LoginScreen;
 
 const styles = StyleSheet.create({
-    content: {
-        backgroundColor: COLORS.BLACK,
-        color: COLORS.WHITE,
-    },
     topSpace: {
         //backgroundColor: 'blue',
         flex: 0.4,
@@ -80,17 +67,6 @@ const styles = StyleSheet.create({
         fontSize: 50,
         fontWeight: 'bold',
         alignSelf: 'center',
-    },
-    left: {
-        //backgroundColor: 'yellow',
-        flex: 1,
-    },
-    center: {
-        flex: 6,
-    },
-    right: {
-        //backgroundColor: 'yellow',
-        flex: 1,
     },
     separatingSpace: {
         //backgroundColor: 'green',

@@ -2,16 +2,8 @@ import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import COLORS from '../utils/Colors';
 import SignUpForm from '../components/SignUpForm';
-import {
-    Button,
-    Text,
-    Container,
-    Grid,
-    Col,
-    Row,
-    Title,
-    Content
-} from 'native-base';
+import {Text,Grid,Row} from 'native-base';
+import ScreenContainer from './ScreenContainer';
 
 export default class SignUpScreen extends React.Component {
 
@@ -21,45 +13,35 @@ export default class SignUpScreen extends React.Component {
         this.goToSignIn = this.goToSignIn.bind(this);
     }
 
-    goToSignIn = async () => {
+    async goToSignIn() {
         this.props.navigation.navigate('SignIn');
     }
 
     render() {
         return (
-        <Container>
-            <Content
-                contentContainerStyle={{ flexGrow: 1 }}
-            >
-                <Grid style={styles.content}>
-                    <Col style={styles.left} />
-                    <Col style={styles.center} >
-                        <Grid>
-                            <Row style={styles.topSpace}/>
-                            <SignUpForm style={styles.middleSpace}/>
-                            <Row style={styles.bottomSpace}>
-                                <Grid style={{alignItems: 'center'}}>
-                                    <Row style={styles.textArea}>
-                                        <Text style={styles.text}>By continuing, you agree to our</Text>
-                                    </Row>
-                                    <Row style={styles.textArea}>
-                                        <TouchableWithoutFeedback>
-                                            <Text style={styles.link}>Terms of Service</Text>
-                                        </TouchableWithoutFeedback>
-                                        <Text style={styles.text}> and </Text>
-                                        <TouchableWithoutFeedback>
-                                            <Text style={styles.link}>Privacy Policy</Text>
-                                        </TouchableWithoutFeedback>
-                                        <Text style={styles.text}>.</Text>
-                                    </Row>
-                                </Grid>
-                            </Row>
-                        </Grid>
-                    </Col>
-                    <Col style={styles.right} />
-                </Grid>
-            </Content>
-        </Container>
+        <ScreenContainer>
+            <Grid>
+                <Row style={styles.topSpace}/>
+                <SignUpForm style={styles.middleSpace}/>
+                <Row style={styles.bottomSpace}>
+                    <Grid style={{alignItems: 'center'}}>
+                        <Row style={styles.textArea}>
+                            <Text style={styles.text}>By continuing, you agree to our</Text>
+                        </Row>
+                        <Row style={styles.textArea}>
+                            <TouchableWithoutFeedback>
+                                <Text style={styles.link}>Terms of Service</Text>
+                            </TouchableWithoutFeedback>
+                            <Text style={styles.text}> and </Text>
+                            <TouchableWithoutFeedback>
+                                <Text style={styles.link}>Privacy Policy</Text>
+                            </TouchableWithoutFeedback>
+                            <Text style={styles.text}>.</Text>
+                        </Row>
+                    </Grid>
+                </Row>
+            </Grid>
+        </ScreenContainer>
         );
     }
 }
@@ -69,19 +51,6 @@ const styles = StyleSheet.create({
         fontSize: 50,
         fontWeight: 'bold',
         alignSelf: 'center',
-    },
-    content: {
-        backgroundColor: COLORS.BLACK,
-        color: COLORS.WHITE,
-    },
-    left: {
-        flex: 1,
-    },
-    center: {
-        flex: 6,
-    },
-    right: {
-        flex: 1,
     },
     topSpace: {
         flex: 0.2,

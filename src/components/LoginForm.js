@@ -1,7 +1,8 @@
 import React from 'react';
 import COLORS from '../utils/Colors';
-import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { withNavigation } from 'react-navigation';
+import {StyleSheet, TouchableWithoutFeedback} from 'react-native';
+import {withNavigation} from 'react-navigation';
+import {SessionAuthenticator} from '../utils/SessionAuthenticator';
 import {
     Title,
     Form,
@@ -13,22 +14,40 @@ import {
     Text,
     Grid,
 } from 'native-base';
+import { InfoProvider } from '../utils/InfoProvider';
 
-class LoginForm extends React.Component {
+class AuthenticationForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.signIn=this.signIn.bind(this);
-        this.signUp=this.signUp.bind(this);
-        this.forgotPassword=this.forgotPassword.bind(this);
+        this.state = {
+            email: '',
+            password: '',
+        }
+
+        this.authenticator = new SessionAuthenticator(this.props.navigation);
+
+        this.signIn = this.signIn.bind(this);
+        this.signUp = this.signUp.bind(this);
+        this.onEmailChange = this.onEmailChange.bind(this);
+        this.onPasswordChange = this.onPasswordChange.bind(this);
+        this.forgotPassword = this.forgotPassword.bind(this);
     }
 
-    async signIn() {
-        this.props.navigation.navigate('Auth');
+    onEmailChange(text) {
+        this.setState({email: text});
+    }
+
+    onPasswordChange(text) {
+        this.setState({password: text});
+    }
+
+    signIn() {
+        this.authenticator.SignIn(this.state.email, this.state.password, InfoProvider.USER)
     };
     
-    async signUp() {
-        this.props.navigation.navigate('SignUp');
+    signUp() {
+        this.props.navigation.navigate('SignUp')
     };
 
     async forgotPassword() {
@@ -49,6 +68,7 @@ class LoginForm extends React.Component {
                             <Item floatingLabel style={styles.inputBox}>
                                 <Label>Email</Label>
                                 <Input
+                                    onChangeText={this.onEmailChange}
                                     returnKeyType = {'next'} 
                                     onSubmitEditing={() => {this.passwordInput._root.focus();}}
                                     blurOnSubmit={false}
@@ -61,6 +81,7 @@ class LoginForm extends React.Component {
                             <Item floatingLabel style={styles.inputBox}>
                                 <Label>Password</Label>
                                 <Input
+                                    onChangeText={this.onPasswordChange}
                                     secureTextEntry
                                     onSubmitEditing={this.signIn}
                                     getRef={input => {this.passwordInput = input;}}/>
@@ -87,6 +108,8 @@ class LoginForm extends React.Component {
         );
     }
 }
+
+module.exports = withNavigation(AuthenticationForm);
 
 const styles = StyleSheet.create({
     content: {
@@ -137,5 +160,3 @@ const styles = StyleSheet.create({
         flex: .2,
     },
 });
-
-module.exports = withNavigation(LoginForm);

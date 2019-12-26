@@ -5,6 +5,10 @@ import FontLoader from './utils/FontLoader';
 import getTheme from '../native-base-theme/components';
 import material from '../native-base-theme/variables/material';
 import { StyleProvider } from 'native-base';
+import Amplify from 'aws-amplify';
+import awsconfig from './aws-exports';
+
+Amplify.configure(awsconfig);
 
 export default class BudgetHog extends React.Component {
 

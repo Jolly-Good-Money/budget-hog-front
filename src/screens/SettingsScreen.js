@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-    Button,
-    Text,
-    Container
-} from 'native-base';
+import {Button,Text} from 'native-base';
+import ScreenContainer from './ScreenContainer';
 
 export default class SettingsScreen extends React.Component {
 
@@ -24,7 +21,7 @@ export default class SettingsScreen extends React.Component {
 
     render() {
         return (
-            <Container>
+            <ScreenContainer>
                 <Text>SettingsScreen!</Text>
                 <Button onPress={this.goBack}>
                     <Text>Go Home</Text>
@@ -33,7 +30,7 @@ export default class SettingsScreen extends React.Component {
                 <Button onPress={this.logOut}>
                     <Text>LogOut</Text>
                     </Button>
-            </Container>
+            </ScreenContainer>
             );
     }
 }

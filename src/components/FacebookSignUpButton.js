@@ -19,11 +19,9 @@ class FacebookSignUpButton extends React.Component {
     }
 
     onFetchSuccess() {
-        console.log("This is supposed to be printed LAST");
+        // Set state to logged in
         this.props.navigation.navigate('Auth');
     }
-
-
 
     async signIn() {
         this.facebookClient = new FacebookClient();
@@ -32,7 +30,6 @@ class FacebookSignUpButton extends React.Component {
             const authenticationResult = await this.facebookClient.authenticateUser();  
             const fetchInfoCall = await this.facebookClient.fetchUserInformation(authenticationResult);
             const userInfo = await fetchInfoCall.json();
-            //console.log(JSON.stringify(userInfo, null, 3));
         } catch (error) {
             this.onFailure(error)
         }

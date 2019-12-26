@@ -7,4 +7,5 @@ FrontEnd Client for JollyGoodMoney's BudgetHog Service.
 - Expo
 - Native Base
 - Jest
+- AWS Amplify
 

@@ -8,7 +8,28 @@ class SignUpForm extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            email: '',
+            password: ''
+        }
         this.signIn = this.signIn.bind(this);
+        this.onEmailChange = this.onEmailChange.bind(this);
+        this.onPasswordChange = this.onPasswordChange.bind(this);
+        this.onConfirmPasswordChange = this.onConfirmPasswordChange.bind(this);
+    }
+
+    onEmailChange(text) {
+        this.setState({email: text});
+    }
+
+    onPasswordChange(text) {
+        this.setState({password: text});
+    }
+
+    onConfirmPasswordChange(text) {
+        if (text !== this.state.password) {
+            console.warn("Passwords don't match");
+        }
     }
 
     async signIn() {
@@ -30,6 +51,7 @@ class SignUpForm extends React.Component {
                                 <Item floatingLabel style={styles.inputBox}>
                                     <Label>Email</Label>
                                     <Input
+                                        onChangeText={this.onEmailChange}
                                         blurOnSubmit={false}
                                         returnKeyType = {'next'} 
                                         onSubmitEditing = {() => {this.passwordInput._root.focus();}}
@@ -38,6 +60,7 @@ class SignUpForm extends React.Component {
                                 <Item floatingLabel style={styles.inputBox}>
                                     <Label>Password</Label>
                                     <Input
+                                        onChangeText={this.onPasswordChange}
                                         secureTextEntry
                                         blurOnSubmit={false}
                                         returnKeyType = {'next'} 
@@ -48,6 +71,7 @@ class SignUpForm extends React.Component {
                                     <Label style={{ color: COLORS.WHITE }}>Confirm Password</Label>
                                     <Input
                                         secureTextEntry
+                                        onChangeText={this.onConfirmPasswordChange}
                                         returnKeyType = {'go'}
                                         getRef={input => {this.confirmPasswordInput = input;}}
                                         onSubmitEditing = {this.signIn}/>
