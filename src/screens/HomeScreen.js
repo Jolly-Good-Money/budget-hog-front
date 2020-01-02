@@ -8,21 +8,27 @@ export default class HomeScreen extends React.Component {
         super(props);
 
         this.goToSettings = this.goToSettings.bind(this);
+        this.goToPlaid = this.goToPlaid.bind(this);
     }
 
     async goToSettings() {
         this.props.navigation.navigate('Settings');
     }
 
+    async goToPlaid() {
+        this.props.navigation.navigate('Plaid');
+    }
+
     render() {
         return (
             <ScreenContainer>
                 <Text>HomeScreen!</Text>
-                <Button title="Go to Settings" onPress={this.goToSettings}>
-                </Button>
+                <Button title="settings" onPress={this.goToSettings}/>
+                <Button title="connect-with-banks" onPress={this.goToPlaid}/>
             </ScreenContainer>
-            );
+        );
     }
+
 }
 
 module.exports = HomeScreen;

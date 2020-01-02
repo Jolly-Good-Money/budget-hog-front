@@ -5,6 +5,7 @@ import SignUpScreen from './SignUpScreen';
 import HomeScreen from './HomeScreen';
 import SettingsScreen from './SettingsScreen';
 import ForgotScreen from './ForgotScreen';
+import PlaidScreen from './PlaidScreen';
 
 const AuthorizedNavigator = createStackNavigator(
     {
@@ -13,6 +14,9 @@ const AuthorizedNavigator = createStackNavigator(
       },
       Settings: {
         screen: SettingsScreen
+      },
+      Plaid: {
+        screen: PlaidScreen
       },
     },
     {

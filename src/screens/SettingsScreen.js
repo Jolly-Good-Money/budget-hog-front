@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button,Text} from 'native-base';
+import {Button,Text, View } from 'native-base';
 import ScreenContainer from './ScreenContainer';
 
 export default class SettingsScreen extends React.Component {
